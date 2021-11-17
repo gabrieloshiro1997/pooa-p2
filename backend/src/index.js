@@ -15,6 +15,12 @@ mongoose.connect(`${DATABASE_URL}:${DATABASE_PORT}/${DATABASE_NAME}`)
   .then(() => console.log("OK"))
   .catch((error) => console.log("Erro: " + error))
 
+app.get('/api/recomendacao', (req, res) => {
+  Recomendacao.find().then((documents) => {
+    res.status(200).json({ recomendacoes: documents })
+  }).catch(error => console.log(error))
+})
+
 app.post('/api/recomendacao', (req, res) => {
 
   const recomendacao = new Recomendacao({
