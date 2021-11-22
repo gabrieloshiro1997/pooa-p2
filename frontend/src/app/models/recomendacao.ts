@@ -1,5 +1,5 @@
 export interface Recomendacao {
-  _id?: string;
+  id: string;
   descricao: string;
   data: string
 }
