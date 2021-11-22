@@ -43,6 +43,7 @@ export class RecomendacaoFormComponent implements OnInit {
 
     const recomendacao: NovaRecomendacao = {
       descricao: form.value.descricao,
+      data: new Date()
     };
 
     if (this.id) {
@@ -51,7 +52,7 @@ export class RecomendacaoFormComponent implements OnInit {
         .subscribe(() => this.router.navigate(['']));
     } else {
       this.recomendacaoService
-        .postRecomendacao({...recomendacao, data: new Date()})
+        .postRecomendacao(recomendacao)
         .subscribe(() => this.router.navigate(['']));
     }
   }
