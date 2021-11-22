@@ -34,4 +34,14 @@ app.post('/api/recomendacao', (req, res) => {
     })
 })
 
+app.get('/api/recomendacao/:id', (req, res) => {
+  const id = req.params.id;
+  Recomendacao.findById(id).then((recomendacao) => {
+    const response = { id: recomendacao._id, descricao: recomendacao.descricao, data: recomendacao.data };
+    console.log(response)
+    res.status(200).json(response)
+  }).catch(error => console.log(error))
+
+})
+
 app.listen(API_PORT, () => console.log(`App running on port ${API_PORT}`))
