@@ -1,15 +1,19 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableModule } from '@angular/material/table';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card'
+import { MatInputModule } from '@angular/material/input'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CabecalhoComponent } from './cabecalho/cabecalho.component';
 import { RecomendacaoListarComponent } from './recomendacao-listar/recomendacao-listar.component';
 import { RecomendacaoFormComponent } from './recomendacao-form/recomendacao-form.component';
-
+import { MatButtonModule } from '@angular/material/button'
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,9 +24,14 @@ import { RecomendacaoFormComponent } from './recomendacao-form/recomendacao-form
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     MatToolbarModule,
     MatIconModule,
     MatTableModule,
+    MatFormFieldModule,
+    MatCardModule,
+    MatInputModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent],
