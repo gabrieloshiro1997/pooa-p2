@@ -1,24 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { parseDate } from '../helpers/date';
+import { RecomendacaoService } from '../recomendacao.service';
 
 export interface Recomendacao {
   descricao: string;
   data: string;
 }
-
-const ELEMENT_DATA: Recomendacao[] = [
-  { descricao: 'Utilizar Álcool em gel', data: parseDate(new Date())},
-  { descricao: 'Utilizar máscara', data: parseDate(new Date()) },
-];
 @Component({
   selector: 'app-recomendacao-listar',
   templateUrl: './recomendacao-listar.component.html',
   styleUrls: ['./recomendacao-listar.component.css'],
 })
 export class RecomendacaoListarComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'symbol', 'acoes'];
-  dataSource = ELEMENT_DATA;
-  constructor() {}
+  displayedColumns: string[] = ['descricao', 'data', 'acoes'];
 
-  ngOnInit(): void {}
+  constructor(private recomendacaoService: RecomendacaoService) {}
+  dataSource: Recomendacao[] = [];
+
+  ngOnInit(): void {
+    this.recomendacaoService.getRecomendacoes();
+    this.recomendacaoService
+      .getRecomendacoesObservable()
+      .subscribe((recomendacoes: Recomendacao[]) => {
+        this.dataSource = recomendacoes
+      });
+  }
 }

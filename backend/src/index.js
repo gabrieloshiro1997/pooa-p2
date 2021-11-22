@@ -16,8 +16,8 @@ mongoose.connect(`${DATABASE_URL}:${DATABASE_PORT}/${DATABASE_NAME}`)
   .catch((error) => console.log("Erro: " + error))
 
 app.get('/api/recomendacao', (req, res) => {
-  Recomendacao.find().then((documents) => {
-    res.status(200).json({ recomendacoes: documents })
+  Recomendacao.find().then((recomendacoes) => {
+    res.status(200).json(recomendacoes)
   }).catch(error => console.log(error))
 })
 

@@ -14,6 +14,8 @@ import { CabecalhoComponent } from './cabecalho/cabecalho.component';
 import { RecomendacaoListarComponent } from './recomendacao-listar/recomendacao-listar.component';
 import { RecomendacaoFormComponent } from './recomendacao-form/recomendacao-form.component';
 import { MatButtonModule } from '@angular/material/button'
+import { RecomendacaoService } from './recomendacao.service';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +26,7 @@ import { MatButtonModule } from '@angular/material/button'
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     FormsModule,
     MatToolbarModule,
     MatIconModule,
@@ -33,7 +36,9 @@ import { MatButtonModule } from '@angular/material/button'
     MatInputModule,
     MatButtonModule
   ],
-  providers: [],
+  providers: [
+    RecomendacaoService
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

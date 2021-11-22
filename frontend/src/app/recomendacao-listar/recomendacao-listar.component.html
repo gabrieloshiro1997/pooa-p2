@@ -1,11 +1,11 @@
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  <ng-container matColumnDef="name">
+  <ng-container matColumnDef="descricao">
     <th mat-header-cell *matHeaderCellDef> Descrição </th>
     <td mat-cell *matCellDef="let element"> {{element.descricao}} </td>
   </ng-container>
 
   <!-- Symbol Column -->
-  <ng-container matColumnDef="symbol">
+  <ng-container matColumnDef="data">
     <th mat-header-cell *matHeaderCellDef> Data </th>
     <td mat-cell *matCellDef="let element"> {{element.data}} </td>
   </ng-container>
