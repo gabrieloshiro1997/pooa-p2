@@ -2,3 +2,7 @@
 mat-form-field, input{
   width: 100%;
 }
+
+#voltar {
+  margin-left: 10px;
+}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { NovaRecomendacao } from '../models/nova-recomendacao';
@@ -14,7 +15,8 @@ export class RecomendacaoFormComponent implements OnInit {
   constructor(
     private recomendacaoService: RecomendacaoService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location
   ) {}
   id: string = '';
   recomendacao: Recomendacao = {} as Recomendacao;
@@ -37,7 +39,7 @@ export class RecomendacaoFormComponent implements OnInit {
   }
 
   onSalvarRecomendacao(form: NgForm) {
-    if(form.invalid) return
+    if (form.invalid) return;
 
     const recomendacao: NovaRecomendacao = {
       descricao: form.value.descricao,
@@ -52,5 +54,9 @@ export class RecomendacaoFormComponent implements OnInit {
         .postRecomendacao(recomendacao)
         .subscribe(() => this.router.navigate(['']));
     }
+  }
+
+  goBack() {
+    this.location.back()
   }
 }

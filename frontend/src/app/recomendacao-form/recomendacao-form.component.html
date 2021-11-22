@@ -1,5 +1,5 @@
 <mat-card>
-  <form (submit)="onSalvarRecomendacao(recomendacaoForm)"  #recomendacaoForm="ngForm">
+  <form #recomendacaoForm="ngForm">
   <mat-form-field
       appearance="fill">
       <mat-label>Digite a recomendação</mat-label>
@@ -21,6 +21,7 @@
       </button>
       <mat-error>Pelo menos 3 caracteres</mat-error>
   </mat-form-field>
-  <button mat-stroked-button >Salvar</button>
+  <button mat-raised-button (click)="onSalvarRecomendacao(recomendacaoForm)" color="primary">Salvar</button>
+  <button id="voltar" mat-raised-button (click)="goBack()" color="warn">Voltar</button>
 </form>
 </mat-card>
