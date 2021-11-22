@@ -1,7 +1,5 @@
 <mat-card>
   <form (submit)="onSalvarRecomendacao(recomendacaoForm)"  #recomendacaoForm="ngForm">
-
-
   <mat-form-field
       appearance="fill">
       <mat-label>Digite a recomendação</mat-label>
@@ -17,6 +15,7 @@
           *ngIf="true"
           matSuffix
           mat-icon-button
+          type="reset"
           >
           <mat-icon>close</mat-icon>
       </button>

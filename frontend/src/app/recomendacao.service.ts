@@ -33,10 +33,29 @@ export class RecomendacaoService {
       });
   }
 
+  getRecomendacao(id: string): Observable<Recomendacao> {
+    return this.httpClient.get<Recomendacao>(
+      `http://localhost:3000/api/recomendacao/${id}`
+    );
+  }
+
   postRecomendacao(recomendacao: NovaRecomendacao): Observable<Recomendacao> {
     return this.httpClient.post<Recomendacao>(
       'http://localhost:3000/api/recomendacao',
       recomendacao
+    );
+  }
+
+  putRecomendacao(id: string, recomendacao: NovaRecomendacao) {
+    return this.httpClient.put<Recomendacao>(
+      `http://localhost:3000/api/recomendacao/${id}`,
+      recomendacao
+    );
+  }
+
+  deleteRecomendacao(id: string): Observable<{ id: string }> {
+    return this.httpClient.delete<{ id: string }>(
+      `http://localhost:3000/api/recomendacao/${id}`
     );
   }
 

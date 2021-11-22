@@ -6,16 +6,20 @@ import { RecomendacaoListarComponent } from './recomendacao-listar/recomendacao-
 const routes: Routes = [
   {
     path: '',
-    component: RecomendacaoListarComponent
+    component: RecomendacaoListarComponent,
   },
   {
     path: 'criar',
-    component: RecomendacaoFormComponent
-  }
+    component: RecomendacaoFormComponent,
+  },
+  {
+    path: 'editar/:id',
+    component: RecomendacaoFormComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

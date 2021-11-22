@@ -44,4 +44,30 @@ app.get('/api/recomendacao/:id', (req, res) => {
 
 })
 
+app.put('/api/recomendacao/:id', (req, res) => {
+  console.log(req.params.id)
+  const recomendacao = new Recomendacao({
+    _id: req.params.id,
+    descricao: req.body.descricao,
+    data: req.body.data,
+  })
+
+  Recomendacao.updateOne(
+    { _id: req.params.id },
+    recomendacao
+  )
+    .then((recomendacao) => {
+      res.status(200).json(recomendacao)
+    })
+
+})
+
+app.delete('/api/recomendacao/:id', (req, res) => {
+  const id = req.params.id
+  Recomendacao.deleteOne({ _id: id })
+    .then(() => {
+      res.status(200).json({ id })
+    })
+})
+
 app.listen(API_PORT, () => console.log(`App running on port ${API_PORT}`))

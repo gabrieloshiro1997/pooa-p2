@@ -21,4 +21,10 @@ export class RecomendacaoListarComponent implements OnInit {
         this.dataSource = recomendacoes
       });
   }
+
+  onDeletarRecomendacao(id: string) {
+    this.recomendacaoService.deleteRecomendacao(id).subscribe(() => {
+      this.recomendacaoService.getRecomendacoes()
+    })
+  }
 }

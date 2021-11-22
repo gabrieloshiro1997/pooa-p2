@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { NovaRecomendacao } from '../models/nova-recomendacao';
 import { Recomendacao } from '../models/recomendacao';
 import { RecomendacaoService } from '../recomendacao.service';
@@ -11,20 +11,46 @@ import { RecomendacaoService } from '../recomendacao.service';
   styleUrls: ['./recomendacao-form.component.css'],
 })
 export class RecomendacaoFormComponent implements OnInit {
-  recomendacao: Recomendacao = {} as Recomendacao;
   constructor(
     private recomendacaoService: RecomendacaoService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
+  id: string = '';
+  recomendacao: Recomendacao = {} as Recomendacao;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+      this.id = paramMap.get('id') || '';
+      if (this.id) {
+        this.recomendacaoService
+          .getRecomendacao(this.id)
+          .subscribe((recomendacao) => {
+            this.recomendacao = {
+              id: recomendacao.id,
+              descricao: recomendacao.descricao,
+              data: recomendacao.data,
+            };
+          });
+      }
+    });
+  }
 
   onSalvarRecomendacao(form: NgForm) {
-    const novaRecomendacao: NovaRecomendacao = {
+    if(form.invalid) return
+
+    const recomendacao: NovaRecomendacao = {
       descricao: form.value.descricao,
     };
-    this.recomendacaoService
-      .postRecomendacao(novaRecomendacao)
-      .subscribe(() => this.router.navigate(['']));
+
+    if (this.id) {
+      this.recomendacaoService
+        .putRecomendacao(this.id, recomendacao)
+        .subscribe(() => this.router.navigate(['']));
+    } else {
+      this.recomendacaoService
+        .postRecomendacao(recomendacao)
+        .subscribe(() => this.router.navigate(['']));
+    }
   }
 }
