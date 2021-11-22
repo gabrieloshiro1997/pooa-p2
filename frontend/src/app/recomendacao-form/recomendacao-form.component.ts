@@ -51,7 +51,7 @@ export class RecomendacaoFormComponent implements OnInit {
         .subscribe(() => this.router.navigate(['']));
     } else {
       this.recomendacaoService
-        .postRecomendacao(recomendacao)
+        .postRecomendacao({...recomendacao, data: new Date()})
         .subscribe(() => this.router.navigate(['']));
     }
   }

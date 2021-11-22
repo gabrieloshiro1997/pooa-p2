@@ -1,22 +1,22 @@
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   <ng-container matColumnDef="descricao">
-    <th mat-header-cell *matHeaderCellDef> Descrição </th>
+    <th style="text-align: 'left'" mat-header-cell *matHeaderCellDef> Descrição </th>
     <td mat-cell *matCellDef="let element"> {{element.descricao}} </td>
   </ng-container>
 
   <!-- Symbol Column -->
   <ng-container matColumnDef="data">
-    <th mat-header-cell *matHeaderCellDef> Data </th>
+    <th style="text-align: 'left'" mat-header-cell *matHeaderCellDef> Data </th>
     <td mat-cell *matCellDef="let element"> {{element.data}} </td>
   </ng-container>
 
   <ng-container matColumnDef="acoes">
-    <th mat-header-cell *matHeaderCellDef>Ações</th>
-    <td mat-cell *matCellDef="let element">
-      <a mat-button [routerLink]="['editar', element.id]" routerLinkActive="mat-accent">
+    <th style="text-align: 'center'" mat-header-cell *matHeaderCellDef>Ações</th>
+    <td style="text-align: 'center'"  mat-cell *matCellDef="let element">
+      <a style="min-width: 0" mat-button [routerLink]="['editar', element.id]" routerLinkActive="mat-accent">
         <mat-icon>edit</mat-icon>
       </a>
-      <a mat-button (click)="onDeletarRecomendacao(element.id)" routerLinkActive="mat-accent">
+      <a style="min-width: 0" mat-button (click)="onDeletarRecomendacao(element.id)" routerLinkActive="mat-accent">
         <mat-icon>delete</mat-icon>
       </a>
     </td>
@@ -24,4 +24,9 @@
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <tr class="mat-row" *matNoDataRow>
+    <td style="text-align: center"class="mat-cell" colspan="9999">
+      Nenhuma recomendação cadastrada.
+    </td>
+  </tr>
 </table>

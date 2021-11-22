@@ -16,7 +16,7 @@ mongoose.connect(`${DATABASE_URL}:${DATABASE_PORT}/${DATABASE_NAME}`)
   .catch((error) => console.log("Erro: " + error))
 
 app.get('/api/recomendacao', (req, res) => {
-  Recomendacao.find().then((recomendacoes) => {
+  Recomendacao.find().sort({ data: -1 }).then((recomendacoes) => {
     const response = recomendacoes.map(recomendacao => ({ id: recomendacao._id, descricao: recomendacao.descricao, data: recomendacao.data }))
     res.status(200).json(response)
   }).catch(error => console.log(error))
@@ -25,7 +25,8 @@ app.get('/api/recomendacao', (req, res) => {
 app.post('/api/recomendacao', (req, res) => {
 
   const recomendacao = new Recomendacao({
-    descricao: req.body.descricao
+    descricao: req.body.descricao,
+    data: req.body.data
   })
   recomendacao.save()
     .then((recomendacaoInserida) => {
@@ -49,7 +50,7 @@ app.put('/api/recomendacao/:id', (req, res) => {
   const recomendacao = new Recomendacao({
     _id: req.params.id,
     descricao: req.body.descricao,
-    data: req.body.data,
+    data: req.body.data
   })
 
   Recomendacao.updateOne(
